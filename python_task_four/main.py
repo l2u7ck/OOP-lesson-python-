@@ -18,26 +18,18 @@ class Student:
         else:
             return 'Ошибка'
 
-    def __srgrades(self):
+    def __str__(self):
         sumall = 0
         count = 0
         for mark in self.grades.values():
             sumall += sum(mark)
             count += len(mark)
-        return sumall / count
-
-    def __str__(self):
+        srmarks = sumall / count
         return (f"Имя: {self.name}"
                 f"\nФамилия: {self.surname}"
-                f"\nСредняя оценка за домашнее задание: {self.__srgrades()}"
+                f"\nСредняя оценка за домашнее задание: {srmarks}"
                 f"\nКурсы в процессе изучения: {', '.join(self.courses_in_progress)}"
                 f"\nЗавершенные курсы: {', '.join(self.finished_courses)}")
-
-    def __lt__(self, other):
-        return self.__srgrades() < other.__srgrades()
-
-    def __eq__(self, other):
-        return self.__srgrades() == other.__srgrades()
 
 
 class Mentor:
@@ -52,24 +44,16 @@ class Lecturer(Mentor):
         super().__init__(name, surname)
         self.marks = {}
 
-    def __srmarks(self):
+    def __str__(self):
         sumall = 0
         count = 0
         for mark in self.marks.values():
             sumall += sum(mark)
             count += len(mark)
-        return sumall / count
-
-    def __str__(self):
+        srmarks = sumall / count
         return (f"Имя: {self.name}"
                 f"\nФамилия: {self.surname}"
-                f"\nСредняя оценка за лекции: {self.__srmarks()}")
-
-    def __lt__(self, other):
-        return self.__srmarks() < other.__srmarks()
-
-    def __eq__(self, other):
-        return self.__srmarks() == other.__srmarks()
+                f"\nСредняя оценка за лекции: {srmarks}")
 
 
 class Reviewer(Mentor):
@@ -92,32 +76,22 @@ best_student = Student('Ruoy', 'Eman', 'your_gender')
 best_student.courses_in_progress += ['Python', 'Git']
 best_student.finished_courses += ['Введение в программирование']
 
-best_student2 = Student('Ron', 'Skill', 'your_gender')
-best_student2.courses_in_progress += ['Python', 'Git']
-best_student2.finished_courses += ['Введение в программирование']
-
 cool_reviewer = Reviewer('Some', 'Buddy')
 cool_reviewer.courses_attached += ['Python', 'Git']
 
 cool_reviewer.rate_hw(best_student, 'Python', 10)
 cool_reviewer.rate_hw(best_student, 'Git', 6)
 
-cool_reviewer.rate_hw(best_student2, 'Python', 10)
-cool_reviewer.rate_hw(best_student2, 'Git', 8)
-
 cool_lecturer = Lecturer('Fred', 'Black')
 cool_lecturer.courses_attached += ['Python']
 
-cool_lecturer2 = Lecturer('Fred2', 'Black2')
+cool_lecturer2 = Lecturer('Fred', 'Black')
 cool_lecturer2.courses_attached += ['Git']
 
 best_student.rate_lecturer(cool_lecturer, 'Python', 10)
 best_student.rate_lecturer(cool_lecturer, 'Python', 8)
 best_student.rate_lecturer(cool_lecturer2, 'Git', 9)
 
-print(cool_lecturer)
-print(cool_lecturer2)
-print(f"{cool_lecturer < cool_lecturer2}\n")
+print(cool_lecturer.marks)
+print(cool_lecturer2.marks)
 print(best_student)
-print(best_student2)
-print(best_student < best_student2)
