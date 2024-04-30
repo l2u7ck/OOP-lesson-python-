@@ -1,3 +1,4 @@
+
 class Student:
     def __init__(self, name, surname, gender):
         self.name = name
@@ -171,7 +172,6 @@ def cal_students(st, course):
         if (isinstance(item, Student) and (course in item.courses_in_progress or course in item.finished_courses)):
             sum_grades += sum(item.grades[course])
             count += len(item.grades[course])
-
     # Return of course grade point average
     if count == 0:
         return "Нет оценок"
@@ -187,7 +187,6 @@ def cal_lectors(lec, course):
         if (isinstance(item, Lecturer) and course in item.courses_attached):
             sum_grades += sum(item.grades[course])
             count += len(item.grades[course])
-
     # Return of course grade point average
     if count == 0:
         return "Нет оценок"
