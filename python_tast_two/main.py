@@ -25,7 +25,11 @@ class Mentor:
 
 
 class Lecturer(Mentor):
-    marks = {}
+    def __init__(self, name, surname):
+        self.name = name
+        self.surname = surname
+        self.courses_attached = []
+        self.marks = {}
 
 
 class Reviewer(Mentor):
@@ -52,6 +56,12 @@ cool_reviewer.rate_hw(best_student, 'Python', 10)
 cool_lecturer = Lecturer('Fred', 'Black')
 cool_lecturer.courses_attached += ['Python']
 
+cool_lecturer2 = Lecturer('Fred', 'Black')
+cool_lecturer2.courses_attached += ['Python']
+
 best_student.rate_lecturer(cool_lecturer, 'Python', 10)
+best_student.rate_lecturer(cool_lecturer2, 'Python', 9)
 
 print(cool_lecturer.marks)
+print(cool_lecturer2.marks)
+
