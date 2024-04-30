@@ -26,9 +26,7 @@ class Mentor:
 
 class Lecturer(Mentor):
     def __init__(self, name, surname):
-        self.name = name
-        self.surname = surname
-        self.courses_attached = []
+        super().__init__(name, surname)
         self.marks = {}
 
 
@@ -44,7 +42,7 @@ class Reviewer(Mentor):
 
 
 best_student = Student('Ruoy', 'Eman', 'your_gender')
-best_student.courses_in_progress += ['Python']
+best_student.courses_in_progress += ['Python', 'Git']
 
 cool_reviewer = Reviewer('Some', 'Buddy')
 cool_reviewer.courses_attached += ['Python']
@@ -57,10 +55,10 @@ cool_lecturer = Lecturer('Fred', 'Black')
 cool_lecturer.courses_attached += ['Python']
 
 cool_lecturer2 = Lecturer('Fred', 'Black')
-cool_lecturer2.courses_attached += ['Python']
+cool_lecturer2.courses_attached += ['Git']
 
 best_student.rate_lecturer(cool_lecturer, 'Python', 10)
-best_student.rate_lecturer(cool_lecturer2, 'Python', 9)
+best_student.rate_lecturer(cool_lecturer2, 'Git', 9)
 
 print(cool_lecturer.marks)
 print(cool_lecturer2.marks)
